@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #e5e7eb transparent;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*::-webkit-scrollbar { width: 5px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 4px; }
+
+::selection {
+  background: rgba(232, 89, 60, 0.15);
+  color: #111;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+@layer components {
+  .input-field {
+    @apply w-full px-3.5 py-2.5 bg-white border border-gray-200 rounded-lg
+           text-gray-900 text-sm placeholder-gray-400
+           focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-400
+           transition-all duration-200;
+  }
+
+  .input-field-sm {
+    @apply w-full px-3 py-2 bg-white border border-gray-200 rounded-lg
+           text-gray-900 text-sm placeholder-gray-400
+           focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-400
+           transition-all duration-200;
+  }
+
+  /* PRIMARY = DARK/BLACK (matching Figma "Next →" and "Create Assignment" sidebar) */
+  .btn-dark {
+    @apply px-5 py-2.5 bg-gray-900 hover:bg-gray-800
+           text-white font-medium rounded-lg text-sm
+           transition-all duration-200
+           disabled:opacity-50 disabled:cursor-not-allowed
+           active:scale-[0.98]
+           inline-flex items-center gap-2;
+  }
+
+  /* ACCENT = ORANGE (for "+ Create Assignment" bottom CTA only) */
+  .btn-orange {
+    @apply px-5 py-2.5 bg-[#E8593C] hover:bg-[#d44a2e]
+           text-white font-medium rounded-lg text-sm
+           transition-all duration-200
+           disabled:opacity-50 disabled:cursor-not-allowed
+           active:scale-[0.98]
+           inline-flex items-center gap-2;
+  }
+
+  .btn-outline {
+    @apply px-5 py-2.5 bg-white border border-gray-200
+           text-gray-700 hover:bg-gray-50
+           font-medium rounded-lg text-sm
+           transition-all duration-200
+           inline-flex items-center gap-2;
+  }
+
+  .card {
+    @apply bg-white border border-gray-200 rounded-xl;
+  }
+
+  .tag-easy {
+    @apply inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-medium
+           text-green-700;
+  }
+  .tag-moderate {
+    @apply inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-medium
+           text-yellow-700;
+  }
+  .tag-challenging {
+    @apply inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-medium
+           text-red-700;
+  }
+}
