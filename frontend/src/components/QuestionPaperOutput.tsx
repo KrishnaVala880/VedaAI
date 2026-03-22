@@ -17,7 +17,7 @@ interface Props {
 
 export default function QuestionPaperOutput({ assignmentId, onBack }: Props) {
   const { paper, fetchPaper, regenerate, progress } = useStore();
-  const [pdfLoading, setPdfLoading] = useState(false);
+  // Removed PDF download feature
   const [isRegenerating, setIsRegenerating] = useState(false);
   const [localLoading, setLocalLoading] = useState(true);
 
@@ -50,20 +50,7 @@ export default function QuestionPaperOutput({ assignmentId, onBack }: Props) {
     }
   };
 
-  const downloadPdf = async () => {
-    if (!paper) return;
-    setPdfLoading(true);
-    try {
-      const res = await axios.get(`${API}/question-papers/${paper._id}/pdf`, { responseType: "blob" });
-      const url = URL.createObjectURL(new Blob([res.data]));
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `${paper.title.replace(/\s+/g, "_")}.pdf`;
-      a.click();
-      URL.revokeObjectURL(url);
-      toast.success("PDF downloaded!");
-    } catch { toast.error("PDF failed"); } finally { setPdfLoading(false); }
-  };
+  // Removed PDF download feature
 
   const diffLabel = (d: string) => ({ easy: "Easy", medium: "Moderate", hard: "Challenging" }[d] || d);
   const diffClass = (d: string) => ({ easy: "tag-easy", medium: "tag-moderate", hard: "tag-challenging" }[d] || "tag-moderate");
@@ -102,12 +89,7 @@ export default function QuestionPaperOutput({ assignmentId, onBack }: Props) {
           
           
 
-          {/* Download button */}
-          <div className="flex items-center gap-3 mb-5">
-            <button onClick={downloadPdf} disabled={pdfLoading} className="btn-outline text-[13px]">
-              {pdfLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
-              Download as PDF
-            </button>
+          {/* Download button removed */}
             <button onClick={handleRegenerate} className="btn-outline text-[13px]">
               <RefreshCw className="w-4 h-4" />
               Regenerate
