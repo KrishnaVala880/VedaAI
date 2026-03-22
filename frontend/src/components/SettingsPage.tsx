@@ -1,2 +1,3 @@
-
-// This file is now intentionally left blank.
+export default function SettingsPage() {
+  return <div>Settings Page</div>;
+}
