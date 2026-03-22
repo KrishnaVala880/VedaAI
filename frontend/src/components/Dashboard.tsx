@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 interface Props {
   onCreate: () => void;
   onView: (id: string) => void;
+  onDuplicate: (id: string) => void;
 }
 
 export default function Dashboard({ onCreate, onView }: Props) {
