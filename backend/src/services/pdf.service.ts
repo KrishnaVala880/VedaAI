@@ -7,17 +7,9 @@ export async function generatePDF(
   const html = buildPaperHTML(paper);
 
   const browser = await puppeteer.launch({
-    headless: true,
-    args: [
-      '--no-sandbox',
-      '--disable-setuid-sandbox',
-      '--disable-dev-shm-usage',
-      '--disable-accelerated-2d-canvas',
-      '--no-zygote',
-      '--single-process',
-      '--disable-gpu',
-    ],
-  });
+  headless: true,
+  args: ['--no-sandbox', '--disable-setuid-sandbox'],
+});
 
   const page = await browser.newPage();
   await page.setContent(html, { waitUntil: 'networkidle0' });
