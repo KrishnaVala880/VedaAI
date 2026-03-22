@@ -38,7 +38,7 @@ export default function Page() {
       <main className="flex-1 overflow-hidden flex flex-col">
         {view === "home" && <HomePage onNav={handleNav} />}
         {view === "assignments" && <Dashboard onCreate={() => { resetForm(); setView("create"); }} onView={handleViewPaper} onDuplicate={handleDuplicate} />}
-        {view === "create" && <CreateAssignment onSubmit={(id) => { setActiveId(id); setView("generating"); }} onBack={() => setView("assignments")} />}
+        {view === "create" && <CreateAssignment onSubmit={(id: string) => { setActiveId(id); setView("generating"); }} onBack={() => setView("assignments")} />}
         {view === "generating" && activeId && <GeneratingScreen assignmentId={activeId} onComplete={() => setView("view")} />}
         {view === "view" && activeId && <QuestionPaperOutput assignmentId={activeId} onBack={() => setView("assignments")} />}
         {view === "groups" && <MyGroups />}

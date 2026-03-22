@@ -15,7 +15,12 @@ const QT_OPTIONS = [
   { value: "numerical", label: "Numerical Problems" },
 ];
 
-export default function CreateAssignment({ onSubmit, onBack }: any) {
+type CreateAssignmentProps = {
+  onSubmit: (id: string) => void;
+  onBack: () => void;
+};
+
+export default function CreateAssignment({ onSubmit, onBack }: CreateAssignmentProps) {
   const {
     form, setField, addQuestionType, removeQuestionType,
     updateQuestionType, createAssignment, loading,
@@ -186,8 +191,12 @@ export default function CreateAssignment({ onSubmit, onBack }: any) {
                     <select
                       className="w-full px-5 py-3 rounded-full bg-gray-100 border border-gray-200 appearance-none text-sm"
                       value={qt.type}
-                      onChange={(e) =>
-                        updateQuestionType(i, "type", e.target.value)
+                      onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                        updateQuestionType(
+                          i,
+                          "type",
+                          e.target.value as "mcq" | "short_answer" | "long_answer" | "true_false" | "fill_blanks" | "diagram" | "numerical"
+                        )
                       }
                     >
                       {QT_OPTIONS.map((o) => (
