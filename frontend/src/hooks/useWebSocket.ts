@@ -3,7 +3,11 @@
 import { useEffect, useRef, useCallback } from "react";
 import { useStore } from "@/store/useStore";
 
-const WS_URL = process.env.NEXT_PUBLIC_WS_URL || "ws://localhost:5000/ws";
+// const WS_URL = process.env.NEXT_PUBLIC_WS_URL || "ws://localhost:5000/ws";
+if (!process.env.NEXT_PUBLIC_WS_URL) {
+  throw new Error("WS URL not defined");
+}
+const WS_URL = process.env.NEXT_PUBLIC_WS_URL;
 
 export function useWebSocket(assignmentId?: string) {
   const wsRef = useRef<WebSocket | null>(null);

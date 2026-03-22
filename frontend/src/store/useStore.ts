@@ -1,7 +1,11 @@
 import { create } from "zustand";
 import axios from "axios";
 
-const API = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+// const API = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+if (!process.env.NEXT_PUBLIC_API_URL) {
+  throw new Error("API URL not defined");
+}
+const API = process.env.NEXT_PUBLIC_API_URL;
 
 export interface QuestionTypeConfig {
   type: "mcq" | "short_answer" | "long_answer" | "true_false" | "fill_blanks" | "diagram" | "numerical";
