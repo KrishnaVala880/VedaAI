@@ -41,10 +41,10 @@ async function bootstrap() {
   WebSocketManager.getInstance(server);
   startWorker();
 
-  server.listen(PORT, () => {
-    console.log(`🚀 Server running on http://localhost:${PORT}`);
-    console.log(`🔌 WebSocket on ws://localhost:${PORT}/ws`);
-  });
+ server.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+  console.log(`🔌 WebSocket on /ws`);
+});
 }
 
 bootstrap().catch(console.error);
