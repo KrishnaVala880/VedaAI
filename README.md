@@ -74,12 +74,20 @@ Create a `.env` file in both `backend` and `frontend` directories.
 
 You can copy from `.env.example` (create one if not present):
 
+### Backend .env
 ```env
 MONGODB_URI=
 REDIS_HOST=
 REDIS_PORT=
+REDIS_PASSWORD=
 OPENAI_API_KEY=
 FRONTEND_URL=
+```
+
+### Frontend .env
+```env
+NEXT_PUBLIC_API_URL=       ### Backend URL/api  e.g.: if Backend URL is https://vedaaibackend-xlv7.onrender.com then NEXT_PUBLIC_API_URL=https://vedaaibackend-xlv7.onrender.com/api
+NEXT_PUBLIC_WS_URL=        ### Websocket URL  e.g.: if Backend URL is https://vedaaibackend-xlv7.onrender.com then NEXT_PUBLIC_WS_URL=wss://vedaaibackend-xlv7.onrender.com/ws
 ```
 
 ⚠️ Never commit your `.env` file to version control.
