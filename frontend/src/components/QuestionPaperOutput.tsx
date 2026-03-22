@@ -85,16 +85,13 @@ export default function QuestionPaperOutput({ assignmentId, onBack }: Props) {
     <div className="flex flex-col h-full">
       <TopBar title="Generate Now" onBack={onBack} icon="sparkle" />
       <div className="flex-1 overflow-y-auto p-6">
-        <div className="max-w-3xl mx-auto">
-          
-          
 
-          {/* Download button removed */}
-            <button onClick={handleRegenerate} className="btn-outline text-[13px]">
-              <RefreshCw className="w-4 h-4" />
-              Regenerate
-            </button>
-          </div>
+        <div className="max-w-3xl mx-auto">
+          {/* Regenerate button */}
+          <button onClick={handleRegenerate} className="btn-outline text-[13px] mb-5">
+            <RefreshCw className="w-4 h-4" />
+            Regenerate
+          </button>
 
           {/* Paper */}
           <div className="bg-white border border-gray-200 rounded-xl shadow-sm">
