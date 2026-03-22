@@ -1,8 +1,11 @@
 import IORedis from 'ioredis';
 
+
 const redis = new IORedis({
-  host: process.env.REDIS_HOST || 'localhost',
+  host: process.env.REDIS_HOST,
   port: parseInt(process.env.REDIS_PORT || '6379'),
+  password: process.env.REDIS_PASSWORD,
+  tls: {}, // Enable TLS for Upstash
   maxRetriesPerRequest: null, // Required by BullMQ
 });
 
