@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useStore } from "@/store/useStore";
 import Sidebar from "@/components/Sidebar";
+import MobileNavBar from "@/components/MobileNavBar";
 import HomePage from "@/components/HomePage";
 import Dashboard from "@/components/Dashboard";
 import CreateAssignment from "@/components/CreateAssignment";
@@ -33,9 +34,13 @@ export default function Page() {
   const handleDuplicate = (id: string) => { duplicateAssignment(id); setView("create"); };
 
   return (
-    <div className="flex h-screen overflow-hidden bg-[#F8F8FA]">
-      <Sidebar active={view} onNav={handleNav} assignmentCount={assignments.length} />
-      <main className="flex-1 overflow-hidden flex flex-col">
+    <div className="flex flex-col md:flex-row h-screen overflow-hidden bg-[#F8F8FA]">
+      {/* Sidebar for desktop */}
+      <div className="hidden md:block">
+        <Sidebar active={view} onNav={handleNav} assignmentCount={assignments.length} />
+      </div>
+      {/* Main content */}
+      <main className="flex-1 overflow-hidden flex flex-col pb-16 md:pb-0">
         {view === "home" && <HomePage onNav={handleNav} />}
         {view === "assignments" && <Dashboard onCreate={() => { resetForm(); setView("create"); }} onView={handleViewPaper} onDuplicate={handleDuplicate} />}
         {view === "create" && <CreateAssignment onSubmit={(id: string) => { setActiveId(id); setView("generating"); }} onBack={() => setView("assignments")} />}
@@ -46,6 +51,10 @@ export default function Page() {
         {view === "library" && <MyLibrary onView={handleViewPaper} />}
         {view === "settings" && <SettingsPage />}
       </main>
+      {/* Mobile bottom nav */}
+      <div className="md:hidden">
+        <MobileNavBar active={view} onNav={handleNav} assignmentCount={assignments.length} />
+      </div>
     </div>
   );
 }
